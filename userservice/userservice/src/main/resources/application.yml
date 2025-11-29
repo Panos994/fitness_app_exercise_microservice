@@ -1,0 +1,23 @@
+server:
+  port: 9193
+spring:
+  application:
+    name: user-service
+  datasource:
+      url: jdbc:postgresql://localhost:5433/fitness_user_db
+      username: postgres
+      password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8799/eureka/
+  instance:
+    # 1. Αναγκάζει το service να καταχωρηθεί με IP αντί για hostname
+    prefer-ip-address: true
+    # 2. Χρησιμοποιεί ρητά το localhost (127.0.0.1) ως IP
+    ip-address: 127.0.0.1
