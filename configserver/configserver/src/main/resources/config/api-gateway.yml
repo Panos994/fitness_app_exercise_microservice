@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+        - id: activity-service
+          uri: lb://ACTIVITY-SERVICE
+          predicates:
+            - Path=/api/activities/**
+        - id: ai-service
+          uri: lb://AI-SERVICE
+          predicates:
+            - Path=/api/recommendations/**
+
+  
+
+server:
+  port: 8090
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8799/eureka/
+  instance:
+    # 1. Αναγκάζει το service να καταχωρηθεί με IP αντί για hostname
+    prefer-ip-address: true
+    # 2. Χρησιμοποιεί ρητά το localhost (127.0.0.1) ως IP
+    ip-address: 127.0.0.1

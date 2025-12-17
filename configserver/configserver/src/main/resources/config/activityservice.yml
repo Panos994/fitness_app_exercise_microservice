@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: activityservice
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: fitnessactivity
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # ΠΡΟΣΟΧΗ: Τα παρακάτω 3 πρέπει να έχουν την ίδια στοίχιση
+    exchange:
+      name: fitness.exchange
+    queue:
+      name: activity.queue
+    routing:
+      key: activity.tracking
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    serviceUrl:
+      # ΕΛΕΓΞΕ ΑΝ Ο EUREKA ΤΡΕΧΕΙ ΣΤΗΝ 8799 Η ΣΤΗΝ 8761
+      defaultZone: http://localhost:8799/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
