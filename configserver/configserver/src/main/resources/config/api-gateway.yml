@@ -1,6 +1,11 @@
 spring:
   application:
     name: api-gateway
+  security:
+    oath2:
+      resourceserver:
+        jwt:
+          jwt-set-uri: http://localhost:8181/realms/master/protocol/openid-connect/certs
   cloud:
     gateway:
       routes:
