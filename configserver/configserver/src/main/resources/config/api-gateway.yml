@@ -2,10 +2,10 @@ spring:
   application:
     name: api-gateway
   security:
-    oath2:
+    oauth2:
       resourceserver:
         jwt:
-          jwt-set-uri: http://localhost:8181/realms/master/protocol/openid-connect/certs
+          jwt-set-uri: http://localhost:8181/realms/fitness-oauth2/protocol/openid-connect/certs
   cloud:
     gateway:
       routes:
