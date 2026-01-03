@@ -1,0 +1,50 @@
+server:
+  port: 8085
+
+spring:
+  # --- Fix for Startup Error 1 ---
+  # Disables the Spring Cloud Config Client check
+  cloud:
+    config:
+      enabled: false
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: fitnessrecommendation
+
+  # --- Standard Spring RabbitMQ Connection ---
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# --- Fix for Startup Error 2 ---
+# These specific properties must be at the ROOT level because your
+# RabbitMqConfig class is looking for 'rabbitmq.queue.name', not 'spring.rabbitmq.queue.name'.
+rabbitmq:
+  exchange:
+    name: fitness.exchange
+  queue:
+    name: activity.queue
+  routing:
+    key: activity.tracking
+
+gemini:
+  api:
+    url: https://generativelanguage.googleapis.com/v1beta/     #${GEMINI_API_URL}
+    key: AIzaSyBGxHnvtFOE--V_-69vif6WUP481K5NJtk     #${GEMINI_API_KEY}
+    model: gemini-2.5-flash
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8799/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+
+# --- Docker Instructions ---
+# docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management
