@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Grid2, Typography} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 const ActivityList = () => {
@@ -12,7 +12,11 @@ const ActivityList = () => {
         }catch(error){
             console.error(error);
         }
-    }
+    };
+    useEffect(() => {
+        fetchActivities();
+    }, []);
+
     return (
         <Grid2 container spacing={2}>
             {activities.map((activity) =>(
