@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const API_URL = 'http://localhost:9192/api/'
 
 const api = axios.create({
@@ -19,4 +21,4 @@ api.interceptors.request.use((config) => {
 
 export const getActivities = () => api.get('/activities'); 
 export const addActivity = (activity) => api.post('/activities', activity); 
-export const getActivityDetail = () => api.get('/recommendations/activity/${id}');
+export const getActivityDetail = (id) => api.get(`/recommendations/activity/${id}`);

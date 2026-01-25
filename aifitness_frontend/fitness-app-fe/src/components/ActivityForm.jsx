@@ -1,11 +1,11 @@
-import { Menu } from '@mui/material';
-import React, { use } from 'react'
+import { Box, FormControl, InputLabel, Select, MenuItem, TextField, Button } from '@mui/material';
+import React, { useState } from 'react'
 import {addActivity} from '../services/api';
 
 const ActivityForm = ({onActivityAdded}) => {
 
     const [activity, setActivity] = useState({ 
-        type: "RUN", duration: '', caloriedBurned: '', 
+        type: "RUNNING", duration: '', caloriesBurned: '', 
         additionalMetrics: {}
 
     })
@@ -15,9 +15,9 @@ const ActivityForm = ({onActivityAdded}) => {
         try{
             await addActivity(activity);
             onActivityAdded();
-            setActivity({ type: "RUN", duration: '', caloriedBurned: '' });
+            setActivity({ type: "RUNNING", duration: '', caloriesBurned: '' });
         } catch (error){
-            
+            console.error(error);
         }
             
     }
